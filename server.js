@@ -1,19 +1,18 @@
-const http = require("http");
-const port = 3000;
+const express = require("express");
+const app = express();
 
-const routes = {
-  "/": "Tá funcionandooooo...",
-  "/livros": "Entrei na página de livros",
-  "/autores": "Listagem de autores",
-  "/editoras": "Página de editoras",
-  "/sobre": "Informação sobre o projeto"
-};
-
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end(routes[req.url]);
+app.get("/", (req, res) => {
+  res.send("Olá, mundo!");
 });
 
-server.listen(port, () => {
-  console.log(`Servidor escutando em http://localhost:${port}`);
+app.get("/livros", (req, res) => {
+  res.send("Página de livros");
+});
+
+app.get("/autores", (req, res) => {
+  res.send("Página de autores");
+});
+
+app.listen(3000, () => {
+  console.log("Aplicativo rodando na porta 3000!");
 });
