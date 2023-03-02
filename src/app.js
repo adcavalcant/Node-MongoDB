@@ -33,9 +33,10 @@ function buscaLivro(id) {
 }
 
 app.delete("/livros/:id", (req, res) => {
-  let index = buscaLivro(req.params.id);
-  livros.splice(livros[index]);
-  res.json(livros);
+  let { id } = req.params;
+  let index = buscaLivro(id);
+  livros.splice(index, 1);
+  res.send(`Livro ${id} excluído com sucesso!`);
 });
 
 export default app;
