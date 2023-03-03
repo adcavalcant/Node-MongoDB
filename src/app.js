@@ -21,18 +21,6 @@ app.get("/", (req, res) => {
   res.send("Tá funcionando a API ;)");
 });
 
-app.get("/livros", (req, res) => {
-  livros
-    .find()
-    .then((livros) => {
-      res.status(200).json(livros);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({ message: "Erro ao buscar livros." });
-    });
-});
-
 app.get("/livros/:id", (req, res) => {
   
 });
