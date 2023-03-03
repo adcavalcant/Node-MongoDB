@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 const app = express();
 
 app.use(express.json());
@@ -7,6 +8,10 @@ const livros = [
   { id: 1, titulo: "Senhor dos Anéis" },
   { id: 2, titulo: "O Hobbit" },
 ];
+
+app.get("/", (req, res) => {
+  res.send('Tá funcionando a API ;)');
+});
 
 app.get("/livros", (req, res) => {
   res.status(200).json(livros);
