@@ -4,7 +4,7 @@ class LivrosController {
   static listarLivros = (req, res) => {
     livros
       .find()
-      .populate('autor')
+      .populate("autor")
       .then((livros) => {
         res.status(200).json(livros);
       })
@@ -18,10 +18,12 @@ class LivrosController {
     const { id } = req.params;
     livros
       .findById(id)
-      .populate('autor','nome')
+      .populate("autor", "nome")
       .then((livro) => {
         if (!livro) {
-          return res.status(404).json({ message: `Livro ${id} não encontrado.` });
+          return res
+            .status(404)
+            .json({ message: `Livro ${id} não encontrado.` });
         }
         res.status(200).json(livro);
       })
@@ -68,6 +70,26 @@ class LivrosController {
       console.error(err);
       res.status(500).json({ message: `Erro ao excluir livro - ${err}` });
     }
+  };
+
+  static listarLivroPorEditora = async (req, res) => {
+    const editora = req.query.editora;
+    livros
+      .find({ editora: editora })
+      .then((livrosEncontrados) => {
+        if (livrosEncontrados.length === 0) {
+          return res
+            .status(404)
+            .json({
+              message: `Nenhum livro encontrado para a editora ${editora}.`,
+            });
+        }
+        res.status(200).json(livrosEncontrados);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: "Erro ao buscar livros." });
+      });
   };
 }
 
