@@ -13,6 +13,22 @@ class LivrosController {
       });
   };
 
+  static listarLivroPorId = (req, res) => {
+    const { id } = req.params;
+    livros
+      .findById(id)
+      .then((livro) => {
+        if (!livro) {
+          return res.status(404).json({ message: `Livro ${id} não encontrado.` });
+        }
+        res.status(200).json(livro);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: "Erro ao buscar livro." });
+      });
+  };
+
   static cadastrarLivro = async (req, res) => {
     try {
       const livro = new livros(req.body);
