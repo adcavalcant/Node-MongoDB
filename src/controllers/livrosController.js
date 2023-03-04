@@ -4,6 +4,7 @@ class LivrosController {
   static listarLivros = (req, res) => {
     livros
       .find()
+      .populate('autor')
       .then((livros) => {
         res.status(200).json(livros);
       })
@@ -17,6 +18,7 @@ class LivrosController {
     const { id } = req.params;
     livros
       .findById(id)
+      .populate('autor','nome')
       .then((livro) => {
         if (!livro) {
           return res.status(404).json({ message: `Livro ${id} não encontrado.` });
