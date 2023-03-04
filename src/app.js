@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./config/dbConnect.js";
 import livros from "./models/Livro.js";
+import routes from "./routes/index.js";
 
 db.on("error", console.log.bind(console, "Erro de conexão"));
 
@@ -12,18 +13,14 @@ const app = express();
 
 app.use(express.json());
 
+routes(app);
+
 // const livros = [
 //   { id: 1, titulo: "Senhor dos Anéis" },
 //   { id: 2, titulo: "O Hobbit" },
 // ];
 
-app.get("/", (req, res) => {
-  res.send("Tá funcionando a API ;)");
-});
-
-app.get("/livros/:id", (req, res) => {
-  
-});
+app.get("/livros/:id", (req, res) => {});
 
 app.post("/livros", (req, res) => {
   livros.push(req.body);

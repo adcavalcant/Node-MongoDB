@@ -1,6 +1,6 @@
-import livros from "./models/Livro.js";
+import livros from "../models/Livro.js";
 
-class LivroController {
+class livrosController {
   static listarLivros = (req, res) => {
     livros
       .find()
@@ -14,4 +14,4 @@ class LivroController {
   };
 }
 
-export default livroController;
+export default livrosController;
