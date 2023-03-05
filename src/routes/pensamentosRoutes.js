@@ -9,5 +9,4 @@ router
   .post("/pensamentos", PensamentosController.cadastrarPensamento)
   .put("/pensamentos/:id", PensamentosController.atualizarPensamento)
   .delete("/pensamentos/:id", PensamentosController.excluirPensamento);
-  
 export default router;
